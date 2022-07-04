@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.ExifInterface;
@@ -83,6 +84,8 @@ public final class PhotoMetadataUtils {
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            options.inPreferQualityOverSpeed = false;
             is = resolver.openInputStream(uri);
             BitmapFactory.decodeStream(is, null, options);
             int width = options.outWidth;
